@@ -1,40 +1,15 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 3001
+app.set('view engine','ejs');
 
-let users = {
-  1: {
-    id: '1',
-    username: 'Robin Wieruch',
-  },
-  2: {
-    id: '2',
-    username: 'Dave Davids',
-  },
-};
+app.use('/',require('./routes/index'));
 
-let messages = {
-  1: {
-    id: '1',
-    text: 'Hello World',
-    userId: '1',
-  },
-  2: {
-    id: '2',
-    text: 'By World',
-    userId: '2',
-  },
-};
-
-app.listen(port, () => {
-  console.log(`Listening on port: ${port}`)
-})
-
-app.get('/', (req, res) => {
-  return res.send('Received a GET HTTP method');
-});
+app.listen(port, console.log("Listening port 3001"))
 
 
+
+/*
 app.post('/', (req, res) => {
   return res.send('Received a POST HTTP method');
 });
@@ -45,21 +20,6 @@ app.put('/', (req, res) => {
 
 app.delete('/', (req, res) => {
   return res.send('Received a DELETE HTTP method');
-});
-
-//CRUD admin
-app.get('/admin', (req, res) => {
-  return res.send(Object.values(users));
-});
-app.get('/admin/:userId', (req, res) => {
-  return res.send(users[req.params.userId]);
-});
-
-app.get('/message', (req, res) => {
-  return res.send(Object.values(messages));
-});
-app.get('/message/:messageId', (req, res) => {
-  return res.send(messages[req.params.messageId].text);
 });
 
 app.post('/admin', (req, res) => {
@@ -107,10 +67,12 @@ app.put('/employee', (req, res) => {
 app.delete('/employee', (req, res) => {
   return res.send('Received a DELETE HTTP method in employee');
 });
+*/
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
 
 module.exports = app;
