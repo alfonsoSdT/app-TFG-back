@@ -1,6 +1,5 @@
 const models = require("../models");
 
-
 /* Users */
 
 const usersView = async (req,res) => {
@@ -13,7 +12,15 @@ const usersByPkView = async (req,res) => {
     /*console.log(JSON.stringify(user));*/
     res.json(user);
 }
-
+const usersWithNameView = async (req,res) => {
+    let user = await models.user.findAll({
+        where: {
+            nameUser: req.params.nameUser
+        }
+    });
+    //console.log(JSON.stringify(datacourse));
+    res.json(user);
+}
 /*Courses */
 
 const coursesView = async (req,res) => {
@@ -24,6 +31,15 @@ const coursesView = async (req,res) => {
 const coursesByPkView = async (req,res) => {
     let course = await models.course.findByPk(req.params.idCourse);
     //console.log(JSON.stringify(course)) ;//
+    res.json(course);
+}
+const coursesWithNameView = async (req,res) => {
+    let course = await models.course.findAll({
+        where: {
+            nameCourse: req.params.nameCourse
+        }
+    });
+    //console.log(JSON.stringify(datacourse));
     res.json(course);
 }
 
@@ -40,7 +56,15 @@ const dataCoursesByPkView = async (req,res) => {
     //console.log(JSON.stringify(datacourse));
     res.json(datacourse);
 }
-
+const dataCoursesWithNameView = async (req,res) => {
+    let datacourse = await models.statusCourse.findAll({
+        where: {
+            statusCourseName: req.params.statusCourseName
+        }
+    });
+    //console.log(JSON.stringify(datacourse));
+    res.json(statusCourse);
+}
 /*Status Courses */
 
 const statusCoursesView = async (req,res) => {
@@ -50,6 +74,15 @@ const statusCoursesView = async (req,res) => {
 }
 const statusCoursesByPkView = async (req,res) => {
     let statusCourse = await models.statusCourse.findByPk(req.params.idStatusCourse);
+    //console.log(JSON.stringify(datacourse));
+    res.json(statusCourse);
+}
+const statusCoursesWithNameView = async (req,res) => {
+    let statusCourse = await models.statusCourse.findAll({
+        where: {
+            statusCourseName: req.params.statusCourseName
+        }
+    });
     //console.log(JSON.stringify(datacourse));
     res.json(statusCourse);
 }
@@ -66,11 +99,20 @@ const statusUserByPkView = async (req,res) => {
     //console.log(JSON.stringify(datacourse));
     res.json(statusUser);
 }
+const statusUserWithNameView = async (req,res) => {
+    let statusUser = await models.statusUser.findAll({
+        where: {
+            statusUserName: req.params.statusUserName
+        }
+    });
+    //console.log(JSON.stringify(datacourse));
+    res.json(statusUser);
+}
 
 module.exports = {
-    usersView, usersByPkView, 
-    coursesView, coursesByPkView,
+    usersView, usersByPkView, usersWithNameView,
+    coursesView, coursesByPkView, coursesWithNameView,
     dataCoursesView, dataCoursesByPkView,
-    statusCoursesView , statusCoursesByPkView,
-    statusUserView, statusUserByPkView
+    statusCoursesView , statusCoursesByPkView, statusCoursesWithNameView,
+    statusUserView, statusUserByPkView , statusUserWithNameView
 };
