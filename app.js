@@ -7,13 +7,27 @@ app.use('/',require('./routes/index'));
 
 app.listen(port, console.log("Listening port 3001"))
 
-
-
 /*
-app.post('/', (req, res) => {
+const mysql = require('mysql')
+const connection = mysql.createConnection({
+  host: '127.0.0.1',
+  port: '3306',
+  user: 'admin',
+  password: 'adminpassword'
+})
+connection.connect()
+
+*/
+
+app.get('/', (req, res) => {
+  
+
   return res.send('Received a POST HTTP method');
 });
-
+/*
+connection.end()
+*/
+/*
 app.put('/', (req, res) => {
   return res.send('Received a PUT HTTP method');
 });
