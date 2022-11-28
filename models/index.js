@@ -1,5 +1,11 @@
 const Sequelize = require('sequelize')
+
 const Users= require('./Users')
+const Courses= require('./Courses')
+const DataCourses= require('./DataCourses')
+const StatusCourse = require('./StatusCourse')
+const StatusUser = require('./StatusUser')
+
 const DataTypes = Sequelize.DataTypes
 
 var opts = {
@@ -10,6 +16,14 @@ var opts = {
 }
 let url = 'mysql://admin:adminpassword@localhost:3306/mydb'
 var sequelize = new Sequelize(url,opts);
+
+
+let user = Users(sequelize,DataTypes)
+let course = Courses(sequelize,DataTypes)
+let datacourse = DataCourses(sequelize,DataTypes)
+let statusCourse = StatusCourse(sequelize,DataTypes)
+let statusUser = StatusUser(sequelize,DataTypes)
+
 
 /*
 const testConn = async() =>{
@@ -24,6 +38,9 @@ const testConn = async() =>{
 }
 testConn()
 */
-let user = Users(sequelize,DataTypes)
 
 exports.user = user;
+exports.course = course;
+exports.datacourse = datacourse;
+exports.statusCourse = statusCourse;
+exports.statusUser = statusUser;

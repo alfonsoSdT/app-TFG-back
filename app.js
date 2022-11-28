@@ -7,18 +7,6 @@ app.use('/',require('./routes/index'));
 
 app.listen(port, console.log("Listening port 3001"))
 
-/*
-const mysql = require('mysql')
-const connection = mysql.createConnection({
-  host: '127.0.0.1',
-  port: '3306',
-  user: 'admin',
-  password: 'adminpassword'
-})
-connection.connect()
-
-*/
-
 app.get('/', (req, res) => {
   
 
