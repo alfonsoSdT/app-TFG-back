@@ -7,6 +7,8 @@ module.exports = function(sequelize,DataTypes) {
         statusUserName: {
             type: DataTypes.STRING
         }
+    }, {
+        timestamps:false
     })
     return StatusUser;
 }

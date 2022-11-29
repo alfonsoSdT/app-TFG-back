@@ -4,7 +4,7 @@ module.exports = function(sequelize,DataTypes) {
             primaryKey: true,
             type: DataTypes.INTEGER
         },
-        idUser: {
+        UserIdUser: {
             type: DataTypes.INTEGER
         },
         idCourse: {
@@ -16,6 +16,8 @@ module.exports = function(sequelize,DataTypes) {
         dateExpired: {
             type: DataTypes.DATEONLY
         }
+    }, {
+        timestamps:false
     })
     return DataCourses;
 }

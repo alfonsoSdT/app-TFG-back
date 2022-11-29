@@ -1,5 +1,6 @@
 const models = require("../models");
 
+
 /* Users */
 
 const usersView = async (req,res) => {
@@ -20,6 +21,27 @@ const usersWithNameView = async (req,res) => {
     });
     //console.log(JSON.stringify(datacourse));
     res.json(user);
+}
+const usersStatusUserView = async (req,res) => {
+    let user = await models.user.findOne({
+        where: {
+            nameUser: req.params.nameUser
+        }
+    });
+    //let statusUser = await user.getStatusUserIdStatusUser();
+    //console.log(JSON.stringify(datacourse));
+    res.json(user);
+    //res.json(statusUser);
+}
+const usersDataCoursesView = async (req,res) => {
+    let user = await models.user.findOne({
+        where: {
+            nameUser: req.params.nameUser
+        }
+    });
+    //console.log(JSON.stringify(datacourse));
+    let datacourse = await user.getDataCourse();
+    res.status(200).json(datacourse);
 }
 /*Courses */
 
@@ -110,7 +132,7 @@ const statusUserWithNameView = async (req,res) => {
 }
 
 module.exports = {
-    usersView, usersByPkView, usersWithNameView,
+    usersView, usersByPkView, usersWithNameView, usersStatusUserView, usersDataCoursesView,
     coursesView, coursesByPkView, coursesWithNameView,
     dataCoursesView, dataCoursesByPkView,
     statusCoursesView , statusCoursesByPkView, statusCoursesWithNameView,

@@ -4,10 +4,10 @@ module.exports = function(sequelize,DataTypes) {
             primaryKey: true,
             type: DataTypes.INTEGER
         },
-        idDataCourse: {
+        DataCourseIdDataCourse: {
             type: DataTypes.INTEGER
         },
-        statusUser: {
+        StatusUserIdStatusUser: {
             type: DataTypes.INTEGER
         },
         nameUser: {
@@ -19,6 +19,9 @@ module.exports = function(sequelize,DataTypes) {
         surnameUser : {
             type: DataTypes.STRING
         }
-    })
+    }, {
+        timestamps:false
+    }
+    )
     return User;
 }

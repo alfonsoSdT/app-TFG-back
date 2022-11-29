@@ -5,6 +5,7 @@ const Courses= require('./Courses')
 const DataCourses= require('./DataCourses')
 const StatusCourse = require('./StatusCourse')
 const StatusUser = require('./StatusUser')
+const { ForeignKeyConstraintError } = require('sequelize')
 
 const DataTypes = Sequelize.DataTypes
 
@@ -38,6 +39,31 @@ const testConn = async() =>{
 }
 testConn()
 */
+
+/*--------Relations-------*/
+/*User N->1 statusUser 
+statusUser.hasMany(user, {
+  foreignKey: 'idUser'
+});
+user.belongsTo(statusUser);
+*/
+/*User 1->1 statusUser 
+user.hasOne(statusUser, {
+  foreignKey: 'idStatusUser'
+});
+statusUser.belongsTo(user);
+*/
+
+/* User 1->N DataCourse*/
+
+datacourse.hasMany(user,{  foreignKey: 'DataCourseIdDataCourse'} );
+user.belongsTo(datacourse);
+/* DataCourse 1->1 User */
+user.hasOne(datacourse, {  foreignKey: 'UserIdUser' });
+datacourse.belongsTo(user);
+
+
+
 
 exports.user = user;
 exports.course = course;

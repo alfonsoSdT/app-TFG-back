@@ -4,7 +4,7 @@ module.exports = function(sequelize,DataTypes) {
             primaryKey: true,
             type: DataTypes.INTEGER
         },
-        statusCourse: {
+        StatusCourseIdStatusCourse: {
             type: DataTypes.INTEGER
         },
         nameCourse: {
@@ -13,6 +13,8 @@ module.exports = function(sequelize,DataTypes) {
         moreInfo: {
             type: DataTypes.STRING
         }
+    }, {
+        timestamps:false
     })
     return Courses;
 }

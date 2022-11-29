@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { usersView, usersByPkView , usersWithNameView,
+const { usersView, usersByPkView , usersWithNameView, usersStatusUserView, usersDataCoursesView,
     coursesView , coursesByPkView, coursesWithNameView,
     dataCoursesView , dataCoursesByPkView ,
     statusCoursesView , statusCoursesByPkView, statusCoursesWithNameView,
@@ -16,6 +16,8 @@ const router = express.Router();
 router.get('/users',usersView);
 router.get('/users/:idUser',usersByPkView);
 router.get('/users/name/:nameUser', usersWithNameView);
+router.get('/users/name/:nameUser/statusUser', usersStatusUserView); 
+router.get('/users/name/:nameUser/datacourses', usersDataCoursesView); 
 
 /* Courses */
 
