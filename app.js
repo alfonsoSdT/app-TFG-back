@@ -1,8 +1,11 @@
 const express = require('express')
 const app = express()
+const cors = require('cors')
+
 const port = 3001
 app.set('view engine','ejs');
 
+app.use(cors())
 app.use('/',require('./routes/index'));
 
 app.listen(port, console.log("Listening port 3001"))

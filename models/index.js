@@ -40,27 +40,24 @@ const testConn = async() =>{
 testConn()
 */
 
-/*--------Relations-------*/
-/*User N->1 statusUser 
-statusUser.hasMany(user, {
-  foreignKey: 'idUser'
-});
-user.belongsTo(statusUser);
-*/
-/*User 1->1 statusUser 
-user.hasOne(statusUser, {
-  foreignKey: 'idStatusUser'
-});
-statusUser.belongsTo(user);
-*/
+/*------------------------------------------Relations-----------------------------------------------*/
 
-/* User 1->N DataCourse*/
 
-datacourse.hasMany(user,{  foreignKey: 'DataCourseIdDataCourse'} );
-user.belongsTo(datacourse);
 /* DataCourse 1->1 User */
 user.hasOne(datacourse, {  foreignKey: 'UserIdUser' });
 datacourse.belongsTo(user);
+
+/*  DataCourse 1->1 Course */
+course.hasOne(datacourse,{  foreignKey: 'CourseIdCourse'} );
+datacourse.belongsTo(course);
+
+/* User 1->1 StatusUser*/
+statusUser.hasOne(user, {  foreignKey: 'StatusUserIdStatusUser'});
+user.belongsTo(statusUser);
+
+/* Crouse 1->1 StatusCourse*/
+statusCourse.hasOne(course, {  foreignKey: 'StatusCourseIdStatusCourse'});
+course.belongsTo(statusCourse);
 
 
 

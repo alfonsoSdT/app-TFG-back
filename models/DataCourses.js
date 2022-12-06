@@ -7,7 +7,7 @@ module.exports = function(sequelize,DataTypes) {
         UserIdUser: {
             type: DataTypes.INTEGER
         },
-        idCourse: {
+        CourseIdCourse: {
             type: DataTypes.INTEGER
         },
         dateCertified: {

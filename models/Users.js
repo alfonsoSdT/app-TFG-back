@@ -4,9 +4,6 @@ module.exports = function(sequelize,DataTypes) {
             primaryKey: true,
             type: DataTypes.INTEGER
         },
-        DataCourseIdDataCourse: {
-            type: DataTypes.INTEGER
-        },
         StatusUserIdStatusUser: {
             type: DataTypes.INTEGER
         },
