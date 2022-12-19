@@ -1,53 +1,67 @@
 const express = require('express');
+const {getAllUsers, getUserByPK, getUserByName, getUserStatusWithName, getUserCoursesByName, getAllUsersDataCourses, 
+    postLoginUser, postCreateUser, postDeleteUser, postUpdateUser
+} = require('../controllers/UserController')
+const {getAllCourses,getAllCoursesWithStatus,getCourseByPK, getCourseByName, getCourseWithStatusByName,getAllDataCoursesOfCourseByID,
+     getAllDataCoursesOfCourseByName, postCreateCourse, postDeleteCourse, postUpdateCourse} = require ('../controllers/CoursesController')
+const {getAllDataCourses, getAllDataCoursesByPK , getAllDataCoursesById,
+        postCreateDataCourse} = require('../controllers/DataCourseController')
 
-const { usersView, usersByPkView , usersWithNameView, usersStatusUserView, usersDataCoursesView, usersCoursesView, usersAllDataCoursesView,
-    coursesView , coursesWithStatusView,  coursesByPkView, coursesWithNameView, coursesStatusCourseView, coursesDataCoursesWithIdCourseView, coursesDataCoursesWithNameCourseView,
-    dataCoursesView , dataCoursesByPkView , dataCoursesCoursesView, 
-    statusCoursesView , statusCoursesByPkView, statusCoursesWithNameView,
-    statusUserView , statusUserByPkView, statusUserWithNameView } 
+const {getAllStatusCourse,getStatusCourseByPK, getStatusCourseByName, getAllStatusUser, getStatusUserByPK, getStatusUserByName} 
     = require('../controllers/controller')
 
 const router = express.Router();
 
-/* GET home page. */
 
 /* Users */
 
-router.get('/users',usersView);
-router.get('/users/id/:idUser',usersByPkView);
-router.get('/users/datacourses', usersAllDataCoursesView); 
+router.get('/users',getAllUsers);
 
-router.get('/users/name/:nameUser', usersWithNameView);
-router.get('/users/name/:nameUser/status', usersStatusUserView); 
-router.get('/users/name/:nameUser/datacourses', usersDataCoursesView); 
-router.get('/users/name/:nameUser/courses', usersCoursesView);
+router.post('/users/login',postLoginUser);
+router.post('/users/create',postCreateUser);
+router.post('/users/delete',postDeleteUser);
+router.post('/users/update',postUpdateUser);
+
+router.get('/users/id/:idUser',getUserByPK);
+router.get('/users/datacourses', getAllUsersDataCourses); 
+
+router.get('/users/name/:nameUser', getUserByName);
+router.get('/users/name/:nameUser/status', getUserStatusWithName); 
+router.get('/users/name/:nameUser/courses', getUserCoursesByName);
 /* Courses */
 
-router.get('/courses',coursesView);
-router.get('/courses/status',coursesWithStatusView);
-router.get('/courses/id/:idCourse',coursesByPkView);
-router.get('/courses/id/:idCourse/datacourses',coursesDataCoursesWithIdCourseView);
+router.get('/courses',getAllCourses);
 
-router.get('/courses/name/:nameCourse',coursesWithNameView);
-router.get('/courses/name/:nameCourse/status',coursesStatusCourseView);
-router.get('/courses/name/:nameCourse/datacourses',coursesDataCoursesWithNameCourseView);
+router.post('/courses/create',postCreateCourse);
+router.post('/courses/delete',postDeleteCourse);
+router.post('/courses/update',postUpdateCourse);
+
+router.get('/courses/status',getAllCoursesWithStatus);
+router.get('/courses/id/:idCourse',getCourseByPK);
+router.get('/courses/id/:idCourse/datacourses',getAllDataCoursesOfCourseByID);
+
+router.get('/courses/name/:nameCourse',getCourseByName);
+router.get('/courses/name/:nameCourse/status',getCourseWithStatusByName);
+router.get('/courses/name/:nameCourse/datacourses',getAllDataCoursesOfCourseByName);
 
 /* Data Courses */
 
-router.get('/datacourses',dataCoursesView);
-router.get('/datacourses/id/:idDataCourse',dataCoursesByPkView);
-router.get('/datacourses/id/:idDataCourse/courses', dataCoursesCoursesView); 
+router.post('/datacourses/create',postCreateDataCourse);
+
+router.get('/datacourses',getAllDataCourses);
+router.get('/datacourses/id/:idDataCourse',getAllDataCoursesByPK);
+router.get('/datacourses/id/:idDataCourse/courses', getAllDataCoursesById); 
 
 /* Status Courses */
 
-router.get('/statuscourses',statusCoursesView);
-router.get('/statuscourses/id/:idStatusCourse',statusCoursesByPkView);
-router.get('/statuscourses/name/:statusCourseName',statusCoursesWithNameView);
+router.get('/statuscourses',getAllStatusCourse);
+router.get('/statuscourses/id/:idStatusCourse',getStatusCourseByPK);
+router.get('/statuscourses/name/:statusCourseName',getStatusCourseByName);
 
 /* Status Users */
 
-router.get('/statususers',statusUserView);
-router.get('/statususers/id/:idStatusUser',statusUserByPkView);
-router.get('/statususers/name/:statusUserName',statusUserWithNameView);
+router.get('/statususers',getAllStatusUser);
+router.get('/statususers/id/:idStatusUser',getStatusUserByPK);
+router.get('/statususers/name/:statusUserName',getStatusUserByName);
 
 module.exports = router;

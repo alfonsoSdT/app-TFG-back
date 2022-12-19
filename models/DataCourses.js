@@ -2,7 +2,8 @@ module.exports = function(sequelize,DataTypes) {
     const DataCourses = sequelize.define('DataCourse', {
         idDataCourse: {
             primaryKey: true,
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            autoincrement: true
         },
         UserIdUser: {
             type: DataTypes.INTEGER

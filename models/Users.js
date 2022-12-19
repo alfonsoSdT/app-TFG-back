@@ -2,7 +2,8 @@ module.exports = function(sequelize,DataTypes) {
     const User = sequelize.define('User', {
         idUser: {
             primaryKey: true,
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            autoincrement: true
         },
         StatusUserIdStatusUser: {
             type: DataTypes.INTEGER
@@ -11,11 +12,18 @@ module.exports = function(sequelize,DataTypes) {
             type: DataTypes.STRING
         },
         password: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            default: 'defaultpassword'
         },
         surnameUser : {
             type: DataTypes.STRING
-        }
+        },
+        age : {
+            type: DataTypes.INTEGER
+        },
+        email : {
+            type: DataTypes.STRING
+        }        
     }, {
         timestamps:false
     }
