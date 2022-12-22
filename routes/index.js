@@ -1,5 +1,5 @@
 const express = require('express');
-const {getAllUsers, getUserByPK, getUserByName, getUserStatusWithName, getUserCoursesByName, getAllUsersDataCourses, 
+const {getAllUsers, getUserByPK, getUserByName, getUserStatusWithName, getUserCoursesByName, getAllUsersDataCourses, getUserDataCoursesById,
     postLoginUser, postCreateUser, postDeleteUser, postUpdateUser
 } = require('../controllers/UserController')
 const {getAllCourses,getAllCoursesWithStatus,getCourseByPK, getCourseByName, getCourseWithStatusByName,getAllDataCoursesOfCourseByID,
@@ -28,6 +28,7 @@ router.get('/users/datacourses', getAllUsersDataCourses);
 router.get('/users/name/:nameUser', getUserByName);
 router.get('/users/name/:nameUser/status', getUserStatusWithName); 
 router.get('/users/name/:nameUser/courses', getUserCoursesByName);
+router.get('/users/id/:idUser/datacourses', getUserDataCoursesById);
 /* Courses */
 
 router.get('/courses',getAllCourses);

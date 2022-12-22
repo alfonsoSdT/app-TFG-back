@@ -58,10 +58,17 @@ const getAllUsersDataCourses = async (req,res) => {
     /* Mostramos solo los cursos del usuario dado */
     res.status(200).json(user);
 }
+const getUserDataCoursesById = async (req,res) => {
+
+    let user = await models.user.findAll({where:{idUser:req.params.idUser}, include: {model:models.datacourse, include:{ model: models.course}}});
+    /* Mostramos solo los cursos del usuario dado */
+    res.status(200).json(user);
+}
+
 const postLoginUser = async (req,res) => {
     let user_name = req.body.nameUser;
     let user_pass = req.body.password;
-
+    
     let user = await models.user.findOne({
         where: {
             nameUser: user_name
@@ -133,6 +140,6 @@ const postUpdateUser = async (req,res) => {
 }
 
 module.exports = {
-    getAllUsers, getUserByPK,getUserByName, getUserStatusWithName, getUserCoursesByName, getAllUsersDataCourses,
+    getAllUsers, getUserByPK,getUserByName, getUserStatusWithName, getUserCoursesByName, getAllUsersDataCourses, getUserDataCoursesById,
     postLoginUser, postCreateUser, postDeleteUser, postUpdateUser
 };
