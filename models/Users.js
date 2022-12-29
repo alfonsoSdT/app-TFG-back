@@ -18,8 +18,8 @@ module.exports = function(sequelize,DataTypes) {
         surnameUser : {
             type: DataTypes.STRING
         },
-        age : {
-            type: DataTypes.INTEGER
+        brithDate : {
+            type: DataTypes.DATEONLY
         },
         email : {
             type: DataTypes.STRING

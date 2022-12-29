@@ -68,7 +68,7 @@ const getUserDataCoursesById = async (req,res) => {
 const postLoginUser = async (req,res) => {
     let user_name = req.body.nameUser;
     let user_pass = req.body.password;
-    
+    console.log(await bcrypt.hash(user_pass,4))
     let user = await models.user.findOne({
         where: {
             nameUser: user_name
@@ -88,7 +88,7 @@ const postLoginUser = async (req,res) => {
 const postCreateUser = async (req,res) => {
     let nameUser = req.body.nameUser;
     let surnameUser = req.body.surnameUser;
-    let age = req.body.age;
+    let brithDate = req.body.brithDate;
     let email = req.body.email;
     let password = await bcrypt.hash('defaultpassword',4)
 
@@ -97,7 +97,7 @@ const postCreateUser = async (req,res) => {
         nameUser: nameUser ,
         password: password,
         surnameUser:   surnameUser ,
-        age: age,
+        brithDate: brithDate,
         email: email    
     }
     await models.user.create(newUser); 
@@ -121,7 +121,7 @@ const postUpdateUser = async (req,res) => {
     let idUser = req.body.idUser;
     let nameUser = req.body.nameUser;
     let surnameUser = req.body.surnameUser;
-    let age = req.body.age;
+    let brithDate = req.body.brithDate;
     let email = req.body.email;
     let user = await models.user.findOne({
         where: {
@@ -133,7 +133,7 @@ const postUpdateUser = async (req,res) => {
     await user.update({
         nameUser: nameUser,
         surnameUser: surnameUser,
-        age: age,
+        brithDate: brithDate,
         email: email
     });   
     res.status(200).json({status: 200, message:'Succesfully updated'})
