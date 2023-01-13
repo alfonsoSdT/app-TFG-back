@@ -5,12 +5,10 @@ const bcrypt = require('bcryptjs')
 
 const getAllUsers = async (req,res) => {
     let user =  await models.user.findAll({exclude: 'password'});
-    /*console.log(JSON.stringify(user));*/
     res.json(user)
 }
 const getUserByPK = async (req,res) => {
     let user = await models.user.findOne({exclude: 'password', where: {idUser:req.params.idUser}});
-    /*console.log(JSON.stringify(user));*/
     res.json(user);
 }
 const getUserByName = async (req,res) => {
@@ -55,7 +53,6 @@ const getUserCoursesByName = async (req,res) => {
 
 const getAllUsersDataCourses = async (req,res) => {
     let user = await models.user.findAll({include: {model:models.datacourse, include:{ model: models.course}}});
-    /* Mostramos solo los cursos del usuario dado */
     res.status(200).json(user);
 }
 const getUserDataCoursesById = async (req,res) => {
@@ -68,7 +65,7 @@ const getUserDataCoursesById = async (req,res) => {
 const postLoginUser = async (req,res) => {
     let user_name = req.body.nameUser;
     let user_pass = req.body.password;
-    console.log(await bcrypt.hash(user_pass,4))
+    
     let user = await models.user.findOne({
         where: {
             nameUser: user_name

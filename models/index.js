@@ -25,30 +25,15 @@ let datacourse = DataCourses(sequelize,DataTypes)
 let statusCourse = StatusCourse(sequelize,DataTypes)
 let statusUser = StatusUser(sequelize,DataTypes)
 
-
-/*
-const testConn = async() =>{
-  try {
-    await sequelize.authenticate();
-    console.log('Connection has been established successfully.');
-  } catch (error) {
-    console.error('Unable to connect to the database:', error);
-  }
-
-
-}
-testConn()
-*/
-
 /*------------------------------------------Relations-----------------------------------------------*/
 
 
 /* DataCourse 1->1 User */
-user.hasOne(datacourse, {  foreignKey: 'UserIdUser' });
+user.hasMany(datacourse, {  foreignKey: 'UserIdUser' });
 datacourse.belongsTo(user);
 
 /*  DataCourse 1->1 Course */
-course.hasOne(datacourse,{  foreignKey: 'CourseIdCourse'} );
+course.hasMany(datacourse,{  foreignKey: 'CourseIdCourse'} );
 datacourse.belongsTo(course);
 
 /* User 1->1 StatusUser*/
